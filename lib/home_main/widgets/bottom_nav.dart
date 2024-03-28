@@ -34,22 +34,27 @@ class _BottomNavState extends State<BottomNav> {
               BottomNavMenuItem(
                 color: _determineColor(0),
                 onTap: ()=> _tapped(0),
+                icon: 'assets/images/search.png',
               ),
               BottomNavMenuItem(
                 color: _determineColor(1),
                 onTap: ()=> _tapped(1),
+                icon: 'assets/images/message.png',
               ),
               BottomNavMenuItem(
                 color: _determineColor(2),
                 onTap: ()=> _tapped(2),
+                icon: 'assets/images/home.png',
               ),
               BottomNavMenuItem(
                 color: _determineColor(3),
                 onTap: ()=> _tapped(3),
+                icon: 'assets/images/heart.png',
               ),
               BottomNavMenuItem(
                 color: _determineColor(4),
                 onTap: ()=> _tapped(4),
+                icon: 'assets/images/avatar.png',
               ),
             ],
           ),

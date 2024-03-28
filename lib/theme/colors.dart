@@ -9,4 +9,6 @@ class AppColors{
   static const appBrown = Color(0xFFA5947E);
   static const white = Colors.white;
   static const menuGray = Color(0xFF747474);
+  static const searchListTitle = Color(0xFFAFADA8);
+  static const searchOption = Color(0xFFAFADA8);
 }

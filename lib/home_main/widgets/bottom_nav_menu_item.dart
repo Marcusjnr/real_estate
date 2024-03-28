@@ -4,7 +4,13 @@ import 'package:real_estate_app/theme/colors.dart';
 class BottomNavMenuItem extends StatelessWidget {
   final Color color;
   final Function() onTap;
-  const BottomNavMenuItem({super.key, this.color = AppColors.bottomNavigationItemBackColor, required this.onTap,});
+  final String icon;
+  const BottomNavMenuItem({
+    super.key,
+    this.color = AppColors.bottomNavigationItemBackColor,
+    required this.onTap,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +22,13 @@ class BottomNavMenuItem extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: color,
+        ),
+        child: Center(
+          child: Image.asset(
+            icon,
+            width: 20,
+            height: 20,
+          ),
         ),
       ),
     );
