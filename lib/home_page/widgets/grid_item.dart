@@ -16,6 +16,8 @@ class GridItem extends StatefulWidget {
   final String text;
   final AlignmentGeometry alignmentGeometry;
   final double fontSize;
+  final double fontDisplaySize;
+  final double textLeftPadding;
 
   const GridItem({
     super.key,
@@ -29,6 +31,8 @@ class GridItem extends StatefulWidget {
     this.alignmentGeometry = Alignment.center,
     this.delayCallBack,
     this.fontSize = 14,
+    this.fontDisplaySize = 100,
+    this.textLeftPadding = 8.0
   });
 
   @override
@@ -116,11 +120,16 @@ class _GridItemState extends State<GridItem> {
                            Align(
                               alignment: widget.alignmentGeometry,
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                    widget.text,
-                                  style: TextStyle(
-                                    fontSize: widget.fontSize,
+                                padding: EdgeInsets.only(left: widget.textLeftPadding),
+                                child: SizedBox(
+                                  width: widget.fontDisplaySize,
+                                  child: Text(
+                                      widget.text,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: widget.fontSize,
+                                    ),
                                   ),
                                 ),
                               ),)

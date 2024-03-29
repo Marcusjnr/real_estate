@@ -48,6 +48,7 @@ class _RoomsViewState extends State<RoomsView> {
                 delay: 1000,
                 text: 'Gubina St 11',
                 alignmentGeometry: Alignment.centerLeft,
+                textLeftPadding: 26,
               ),
               const SizedBox(
                 width: AppDimensions.roomMargin,
@@ -65,6 +66,8 @@ class _RoomsViewState extends State<RoomsView> {
                       text: 'Trefoleva St.,43',
                       alignmentGeometry: Alignment.centerLeft,
                       fontSize: 12,
+                      fontDisplaySize: 50,
+                      textLeftPadding: 20,
                     ),
                     const SizedBox(
                       height: AppDimensions.roomMargin,
@@ -80,6 +83,8 @@ class _RoomsViewState extends State<RoomsView> {
                       text: 'Sedova St.,22',
                       alignmentGeometry: Alignment.centerLeft,
                       fontSize: 12,
+                      fontDisplaySize: 50,
+                      textLeftPadding: 20,
                     ),
                   ],
                 ),
