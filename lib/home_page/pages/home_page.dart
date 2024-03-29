@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate_app/home_page/widgets/buy_rent_display.dart';
-import 'package:real_estate_app/home_page/widgets/grid_item.dart';
+import 'package:real_estate_app/home_page/widgets/rooms_view.dart';
 import 'package:real_estate_app/theme/colors.dart';
 import 'package:real_estate_app/theme/dimensions.dart';
 import 'package:real_estate_app/utils/utils.dart';
@@ -13,17 +13,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late AnimationController locationFadeController;
-  late AnimationController greetingAnimationController;
-  late AnimationController staggeredSlowAnimationController;
-  late AnimationController staggeredFastAnimationController;
-  late AnimationController selectPerfectPlaceStaggeredAnimationController;
-  late Interval locationContainerInterval;
-  late Interval fadeLocationTextInterval;
-  late Interval profilePictureScaleInterval;
-  late Interval selectTextInterval;
-  late Interval buyRentScaleInterval;
-  late Interval roomsSlideInterval;
+  late AnimationController locationFadeController,
+      greetingAnimationController,
+      staggeredSlowAnimationController,
+      staggeredFastAnimationController,
+      selectPerfectPlaceStaggeredAnimationController,
+      sliderScaleStaggeredAnimationController;
+
+  late Interval locationContainerInterval,
+      fadeLocationTextInterval,
+      profilePictureScaleInterval,
+      selectTextInterval,
+      buyRentScaleInterval,
+      roomsSlideInterval;
+
   late Animation<Offset> _offsetAnimation;
 
   @override
@@ -44,6 +47,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     selectPerfectPlaceStaggeredAnimationController =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
 
+    sliderScaleStaggeredAnimationController = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
+
     locationContainerInterval = const Interval(0.0, 0.5);
     fadeLocationTextInterval = const Interval(0.4, 1.0);
     profilePictureScaleInterval = const Interval(0.0, 1.0);
@@ -61,6 +67,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         curve: roomsSlideInterval,
       ),
     );
+
+    selectPerfectPlaceStaggeredAnimationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        sliderScaleStaggeredAnimationController.forward();
+      }
+    });
 
     locationFadeController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -159,7 +171,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 height: 50,
                                 decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primary),
+                                    color: AppColors.primary,
+                                  image: DecorationImage(image: AssetImage('assets/images/profile_pic.jpg'))
+                                ),
                               ),
                             )
                           ],
@@ -225,42 +239,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: const BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(AppDimensions.borderRadius),
-                        topRight: Radius.circular(AppDimensions.borderRadius),
-                      )),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: getDeviceWidth(context),
-                        height: 190,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.red,
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/house_pic_living.jpg'),
-                              fit: BoxFit.cover,
-                            )),
-                      ),
-                      GridView.builder(
-                        itemCount: imageList.length,
-                        primary: false,
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 8.0,
-                          crossAxisSpacing: 8.0,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return GridItem(
-                            imageString: imageList[index],
-                          );
-                        },
-                      ),
-                    ],
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(AppDimensions.borderRadius),
+                      topRight: Radius.circular(AppDimensions.borderRadius),
+                    ),
+                  ),
+                  child: RoomsView(
+                    sliderScaleAnimationController:
+                        sliderScaleStaggeredAnimationController,
                   ),
                 ),
               ),
@@ -270,13 +257,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     );
   }
-
-  List<String> get imageList => [
-        'assets/images/house_interior_two.jpg',
-        'assets/images/house_interior_three.jpg',
-        'assets/images/house_interior_four.jpg',
-        'assets/images/house_interior_five.jpg',
-      ];
 
   @override
   void dispose() {

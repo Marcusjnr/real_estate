@@ -5,6 +5,9 @@ class AppDimensions{
   static const borderRadius = 30.0;
   static const countSeconds = 5;
   static const searchOptionContainer = 50.0;
-  static const searchListContainerBottomMargin = AppDimensions.searchBottomMenuBottomMargin + searchOptionContainer + 8;
+  static const roomLongHeight = 400.0;
+  static const roomMargin = 14.0;
+  static const roomShortHeight = (roomLongHeight - roomMargin) / 2;
+  static const searchListContainerBottomMargin = searchBottomMenuBottomMargin + searchOptionContainer + 8;
   static const searchBottomMenuBottomMargin = bottomNavBarBottomMargin + bottomNavBarHeight + parentPadding;
 }

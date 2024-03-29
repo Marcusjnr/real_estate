@@ -5,6 +5,8 @@ import 'package:real_estate_app/home_page/pages/home_page.dart';
 import 'package:real_estate_app/search/pages/search_page.dart';
 import 'package:real_estate_app/utils/utils.dart';
 
+late AnimationController bottomAnimationController;
+
 class HomeMainPage extends StatefulWidget {
   const HomeMainPage({super.key});
 
@@ -12,8 +14,10 @@ class HomeMainPage extends StatefulWidget {
   State<HomeMainPage> createState() => _HomeMainPageState();
 }
 
-class _HomeMainPageState extends State<HomeMainPage> {
+class _HomeMainPageState extends State<HomeMainPage> with SingleTickerProviderStateMixin{
   int selectedScreen = 2;
+
+  late Animation<Offset> _offsetAnimation;
 
   final List<Widget> _screens = [
     const SearchPage(),
@@ -21,6 +25,23 @@ class _HomeMainPageState extends State<HomeMainPage> {
     const HomePage(),
   ];
 
+  @override
+  void initState() {
+    bottomAnimationController =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+
+    _offsetAnimation = Tween<Offset>(
+      begin: const Offset(0.0, 1.0),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: bottomAnimationController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +54,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
           ),
 
           BottomNav(
+            offsetAnimation: _offsetAnimation,
             bottomNavItemTapped: _bottomNavItemTapped,
           )
         ],
