@@ -31,7 +31,7 @@ class _HomeMainPageState extends State<HomeMainPage> with SingleTickerProviderSt
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
 
     _offsetAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 1.0),
+      begin: const Offset(0.0, 2.0),
       end: Offset.zero,
     ).animate(
       CurvedAnimation(

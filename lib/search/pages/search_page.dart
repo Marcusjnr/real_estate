@@ -14,18 +14,18 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage>
-    with TickerProviderStateMixin {
-  late AnimationController listAnimationController;
-  late AnimationController optionsAnimationController;
-  late AnimationController chatPinAnimationController;
+class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
+  late AnimationController listAnimationController,
+      optionsAnimationController,
+      chatPinAnimationController;
+
   final Random _random = Random();
   late List<Widget> _widgets;
 
   @override
   void initState() {
     super.initState();
-    
+
     listAnimationController =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
 
@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage>
     _widgets = List.generate(4, (index) => _buildRandomPin());
 
     optionsAnimationController.addStatusListener((status) {
-      if(status == AnimationStatus.completed){
+      if (status == AnimationStatus.completed) {
         chatPinAnimationController.forward();
       }
     });
@@ -55,7 +55,13 @@ class _SearchPageState extends State<SearchPage>
           horizontal: AppDimensions.parentPadding,
           vertical: AppDimensions.parentPadding,
         ),
-        color: Colors.black,
+        decoration: const BoxDecoration(
+          color: Colors.black,
+          image: DecorationImage(
+            image: AssetImage('assets/images/map.png'),
+            fit: BoxFit.cover,
+          )
+        ),
         child: SafeArea(
           child: Stack(
             children: [
@@ -138,7 +144,10 @@ class _SearchPageState extends State<SearchPage>
                             shape: BoxShape.circle,
                             color: AppColors.menuGray.withOpacity(.8),
                           ),
-                          child: Image.asset('assets/images/wallet.png', color: AppColors.searchOption,),
+                          child: Image.asset(
+                            'assets/images/wallet.png',
+                            color: AppColors.searchOption,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -152,7 +161,9 @@ class _SearchPageState extends State<SearchPage>
                           shape: BoxShape.circle,
                           color: AppColors.menuGray.withOpacity(.8),
                         ),
-                        child: Image.asset('assets/images/send.png',),
+                        child: Image.asset(
+                          'assets/images/send.png',
+                        ),
                       ),
                     ],
                   ),
@@ -222,7 +233,9 @@ class _SearchPageState extends State<SearchPage>
                           width: 14,
                           height: 14,
                         ),
-                        const SizedBox(width: 10,),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         const Text(
                           'List of variants',
                           style: TextStyle(
@@ -234,7 +247,6 @@ class _SearchPageState extends State<SearchPage>
                   ),
                 ),
               ),
-              
               ..._widgets,
             ],
           ),
@@ -247,10 +259,10 @@ class _SearchPageState extends State<SearchPage>
 
   void _closeMenu() => listAnimationController.reverse();
 
-  Widget _buildRandomPin(){
+  Widget _buildRandomPin() {
     double top = 160 + _random.nextDouble() * (300 - 160);
     double left = _random.nextDouble() * 300;
-    return  Positioned(
+    return Positioned(
         top: top,
         left: left,
         child: ScaleTransition(
@@ -261,8 +273,7 @@ class _SearchPageState extends State<SearchPage>
           child: const ChatLikePin(
             text: 'Money',
           ),
-        )
-    );
+        ));
   }
 
   List<SearchCategory> get listTitles => [
