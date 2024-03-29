@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     selectTextInterval = const Interval(0.0, 1.0);
     buyRentScaleInterval = const Interval(0.5, 1.0);
-    roomsSlideInterval = const Interval(0.9, 1.0);
+    roomsSlideInterval = const Interval(0.2, 1.0);
 
     _offsetAnimation = Tween<Offset>(
       begin: const Offset(0.0, 1.0),
@@ -212,7 +212,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 "let's select your\nperfect place",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.w500),
+                                    fontSize: 30,
+                                  fontWeight: FontWeight.w500
+                                ),
                               ),
                             ],
                           ),
