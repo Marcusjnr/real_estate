@@ -6,6 +6,7 @@ import 'package:real_estate_app/search/models/search_category.dart';
 import 'package:real_estate_app/theme/colors.dart';
 import 'package:real_estate_app/theme/dimensions.dart';
 import 'package:real_estate_app/utils/utils.dart';
+import 'package:collection/collection.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -189,8 +190,8 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: listTitles
-                          .map(
-                            (listItem) => ListTile(
+                          .mapIndexed(
+                            (index,listItem) => ListTile(
                               onTap: _closeMenu,
                               leading: Image.asset(
                                 listItem.icon,
@@ -199,8 +200,8 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                               ),
                               title: Text(
                                 listItem.title,
-                                style: const TextStyle(
-                                  color: AppColors.searchListTitle,
+                                style: TextStyle(
+                                  color: index == 1 ? AppColors.primary : AppColors.searchListTitle,
                                 ),
                               ),
                             ),
@@ -271,7 +272,7 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
           ),
           child: const ChatLikePin(
-            text: 'Money',
+            text: '8.5mn',
           ),
         ));
   }
