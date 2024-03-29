@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           slivers: [
             SliverAppBar(
               backgroundColor: Colors.transparent,
-              expandedHeight: getDeviceHeight(context) * .6,
+              expandedHeight: getDeviceHeight(context) * .47,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   children: [

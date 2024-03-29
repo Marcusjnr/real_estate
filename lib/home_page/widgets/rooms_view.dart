@@ -84,12 +84,5 @@ class _RoomsViewState extends State<RoomsView> {
     );
   }
 
-  List<String> get imageList => [
-        'assets/images/house_interior_two.jpg',
-        'assets/images/house_interior_three.jpg',
-        'assets/images/house_interior_four.jpg',
-        'assets/images/house_interior_five.jpg',
-      ];
-
   void _startBottomAnimation()=> bottomAnimationController.forward();
 }
