@@ -78,6 +78,8 @@ class _RoomsViewState extends State<RoomsView> {
             ],
           ),
         ),
+
+        const SizedBox(height: 100,),
       ],
     );
   }

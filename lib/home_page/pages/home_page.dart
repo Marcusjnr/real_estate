@@ -113,126 +113,129 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Stack(
-                children: [
-                  Container(
-                    height: getDeviceHeight(context) * .6,
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizeTransition(
-                              sizeFactor: CurvedAnimation(
-                                parent: staggeredSlowAnimationController,
-                                curve: locationContainerInterval,
-                              ),
-                              axis: Axis.horizontal,
-                              axisAlignment: -1,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: Colors.white,
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              expandedHeight: getDeviceHeight(context) * .6,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizeTransition(
+                                sizeFactor: CurvedAnimation(
+                                  parent: staggeredSlowAnimationController,
+                                  curve: locationContainerInterval,
                                 ),
-                                padding: const EdgeInsets.all(14),
-                                child: FadeTransition(
-                                  opacity: CurvedAnimation(
-                                      parent: locationFadeController,
-                                      curve: fadeLocationTextInterval),
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.location_on_rounded,
-                                        color: AppColors.appBrown,
-                                      ),
-                                      Text(
-                                        'Saint Petersburg',
-                                        style: TextStyle(
+                                axis: Axis.horizontal,
+                                axisAlignment: -1,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    color: Colors.white,
+                                  ),
+                                  padding: const EdgeInsets.all(14),
+                                  child: FadeTransition(
+                                    opacity: CurvedAnimation(
+                                        parent: locationFadeController,
+                                        curve: fadeLocationTextInterval),
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_on_rounded,
                                           color: AppColors.appBrown,
                                         ),
-                                      )
-                                    ],
+                                        Text(
+                                          'Saint Petersburg',
+                                          style: TextStyle(
+                                            color: AppColors.appBrown,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
+                              ScaleTransition(
+                                scale: CurvedAnimation(
+                                  parent: staggeredFastAnimationController,
+                                  curve: profilePictureScaleInterval,
+                                ),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.primary,
+                                      image: DecorationImage(image: AssetImage('assets/images/profile_pic.jpg'))
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          FadeTransition(
+                            opacity: CurvedAnimation(
+                                parent: greetingAnimationController,
+                                curve: fadeLocationTextInterval),
+                            child: const Row(
+                              children: [
+                                Text(
+                                  'Hi, Marina',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: AppColors.appBrown,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ],
                             ),
-                            ScaleTransition(
-                              scale: CurvedAnimation(
-                                parent: staggeredFastAnimationController,
-                                curve: profilePictureScaleInterval,
-                              ),
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.primary,
-                                  image: DecorationImage(image: AssetImage('assets/images/profile_pic.jpg'))
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        FadeTransition(
-                          opacity: CurvedAnimation(
-                              parent: greetingAnimationController,
-                              curve: fadeLocationTextInterval),
-                          child: const Row(
-                            children: [
-                              Text(
-                                'Hi, Marina',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: AppColors.appBrown,
-                                  fontSize: 24,
-                                ),
-                              ),
-                            ],
                           ),
-                        ),
-                        SizeTransition(
-                          sizeFactor: CurvedAnimation(
-                            parent:
-                                selectPerfectPlaceStaggeredAnimationController,
-                            curve: selectTextInterval,
-                          ),
-                          axis: Axis.vertical,
-                          axisAlignment: 0,
-                          child: const Row(
-                            children: [
-                              Text(
-                                "let's select your\nperfect place",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontSize: 30,
-                                  fontWeight: FontWeight.w500
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ScaleTransition(
-                            scale: CurvedAnimation(
+                          SizeTransition(
+                            sizeFactor: CurvedAnimation(
                               parent:
-                                  selectPerfectPlaceStaggeredAnimationController,
-                              curve: buyRentScaleInterval,
+                              selectPerfectPlaceStaggeredAnimationController,
+                              curve: selectTextInterval,
                             ),
-                            child: const BuyRentDisplay()),
-                      ],
+                            axis: Axis.vertical,
+                            axisAlignment: 0,
+                            child: const Row(
+                              children: [
+                                Text(
+                                  "let's select your\nperfect place",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ScaleTransition(
+                              scale: CurvedAnimation(
+                                parent:
+                                selectPerfectPlaceStaggeredAnimationController,
+                                curve: buyRentScaleInterval,
+                              ),
+                              child: const BuyRentDisplay()),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SliverToBoxAdapter(
