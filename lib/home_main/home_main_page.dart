@@ -14,7 +14,7 @@ class HomeMainPage extends StatefulWidget {
   State<HomeMainPage> createState() => _HomeMainPageState();
 }
 
-class _HomeMainPageState extends State<HomeMainPage> with SingleTickerProviderStateMixin{
+class _HomeMainPageState extends State<HomeMainPage> with TickerProviderStateMixin{
   int selectedScreen = 2;
 
   late Animation<Offset> _offsetAnimation;

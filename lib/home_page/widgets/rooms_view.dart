@@ -29,6 +29,7 @@ class _RoomsViewState extends State<RoomsView> {
           sliderScaleAnimationController: widget.sliderScaleAnimationController,
           animationInterval: const Interval(0.0, 1.0),
           delay: 600,
+          text: 'Gladkova St.,25',
         ),
         const SizedBox(
           height: AppDimensions.roomMargin,
@@ -45,6 +46,8 @@ class _RoomsViewState extends State<RoomsView> {
                     widget.sliderScaleAnimationController,
                 animationInterval: const Interval(0.3, 1.0),
                 delay: 1000,
+                text: 'Gubina St 11',
+                alignmentGeometry: Alignment.centerLeft,
               ),
               const SizedBox(
                 width: AppDimensions.roomMargin,
@@ -59,6 +62,9 @@ class _RoomsViewState extends State<RoomsView> {
                           widget.sliderScaleAnimationController,
                       animationInterval: const Interval(0.5, 1.0),
                       delay: 800,
+                      text: 'Trefoleva St.,43',
+                      alignmentGeometry: Alignment.centerLeft,
+                      fontSize: 12,
                     ),
                     const SizedBox(
                       height: AppDimensions.roomMargin,
@@ -70,7 +76,10 @@ class _RoomsViewState extends State<RoomsView> {
                           widget.sliderScaleAnimationController,
                       animationInterval: const Interval(0.8, 1.0),
                       delay: 1200,
-                      delayCallBack: _startBottomAnimation
+                      delayCallBack: _startBottomAnimation,
+                      text: 'Sedova St.,22',
+                      alignmentGeometry: Alignment.centerLeft,
+                      fontSize: 12,
                     ),
                   ],
                 ),

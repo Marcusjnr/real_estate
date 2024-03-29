@@ -13,6 +13,9 @@ class GridItem extends StatefulWidget {
   final Interval animationInterval;
   final int delay;
   final Function()? delayCallBack;
+  final String text;
+  final AlignmentGeometry alignmentGeometry;
+  final double fontSize;
 
   const GridItem({
     super.key,
@@ -22,7 +25,10 @@ class GridItem extends StatefulWidget {
     required this.sliderScaleAnimationController,
     required this.animationInterval,
     required this.delay,
+    required this.text,
+    this.alignmentGeometry = Alignment.center,
     this.delayCallBack,
+    this.fontSize = 14,
   });
 
   @override
@@ -107,12 +113,15 @@ class _GridItemState extends State<GridItem> {
                           ),
 
                           if(_showAnimation)
-                          const Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                  'Gladkova',
-                                style: TextStyle(
-                                  fontSize: 12
+                           Align(
+                              alignment: widget.alignmentGeometry,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                    widget.text,
+                                  style: TextStyle(
+                                    fontSize: widget.fontSize,
+                                  ),
                                 ),
                               ),)
                         ],
